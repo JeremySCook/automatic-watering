@@ -1,3 +1,6 @@
+#by Jeremy S. Cook 4/20/2020
+#comment out lines with "mosquitto_pub" and import os if not using MQTT
+
 import os
 import time
 import RPi.GPIO as GPIO

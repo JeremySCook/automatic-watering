@@ -18,7 +18,7 @@ LED1 = LED(17)
 while True:
     if brew_button.is_pressed:
         print("Watering")
-        os.system("mosquitto_pub -h 192.168.0.13 -t \"test\" -m \"watering button pushed\"")
+        os.system("mosquitto_pub -h [BROKER_IPADDRESS] -t \"test\" -m \"watering button pushed\"")
         water_pump.on()
         LED2.on()
         time.sleep(10)
@@ -26,15 +26,15 @@ while True:
         LED2.off()
     if water_sensor.is_pressed: #ideally the sensor would turn on/of intermittently
         print("OK water level")
-        os.system("mosquitto_pub -h 192.168.0.13 -t \"test\" -m \"Water level OK\"")
+        os.system("mosquitto_pub -h [BROKER_IPADDRESS] -t \"test\" -m \"Water level OK\"")
         LED1.off()
         time.sleep(.5)
     if power_button.is_pressed:
         print("power button pressed")
-        os.system("mosquitto_pub -h 192.168.0.13 -t \"test\" -m \"button check - water routine running\"")
+        os.system("mosquitto_pub -h [BROKER_IPADDRESS] -t \"test\" -m \"button check - water routine running\"")
         time.sleep(.5)
     else:
         print("Low Water level")
-        os.system("mosquitto_pub -h 192.168.0.13 -t \"test\" -m \"I'm thirstyyyyyy!!!\"")
+        os.system("mosquitto_pub -h [BROKER_IPADDRESS] -t \"test\" -m \"I'm thirstyyyyyy!!!\"")
         LED1.on()
         time.sleep(.5)
